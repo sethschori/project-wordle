@@ -1,7 +1,11 @@
 import React from "react";
 
+import Letter from '../Letter';
+
 function Row() {
-    // TODO
+    return (
+        <Letter />
+    )
 }
 
 export default Row;

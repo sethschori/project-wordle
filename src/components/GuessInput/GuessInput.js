@@ -1,7 +1,9 @@
 import React from "react";
 
 function GuessInput() {
-    // TODO
+    return (
+        <p>Guess here!</p>
+    )
 }
 
 export default GuessInput;

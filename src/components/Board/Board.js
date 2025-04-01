@@ -1,7 +1,11 @@
 import React from "react";
 
+import Row from '../Row';
+
 function Board() {
-    // TODO
+    return (
+        <Row />
+    )
 }
 
 export default Board;
