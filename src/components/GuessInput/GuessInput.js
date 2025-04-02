@@ -14,6 +14,7 @@ function GuessInput({ handleGuess, isLost, isWon }) {
             <input
                 id="guess-input"
                 type="text"
+                disabled={isLost || isWon}
                 value={guess}
                 required={true}
                 pattern="[a-zA-Z]{5,5}"
