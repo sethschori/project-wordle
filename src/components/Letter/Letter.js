@@ -1,8 +1,8 @@
 import React from "react";
 
-function Letter() {
+function Letter({ getLetterClass, index, letter }) {
     return (
-        <div>A</div>
+        <div className={`cell ${getLetterClass(letter, index)}`}>{letter}</div>
     )
 }
 
