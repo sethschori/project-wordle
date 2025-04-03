@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Board from '../Board';
+import Board from '../Board/Board';
 import { EMPTY_GUESSES, NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -22,10 +22,24 @@ function Game() {
     return guess === answer;
   }
 
-  const getLetterClass = (letter, index) => {
+  const getLetterClassOld = (letter, letterIndex, rowIndex) => {
+    const rowGuess = guesses[rowIndex];
+  
     if (letter === ' ') { return '' };
-    if (answer[index] === letter) { return 'correct' };
-    if (answer.includes(letter)) { return 'misplaced' };
+    if (answer[letterIndex] === letter) { return 'correct' };
+    if (answer.includes(letter)) {
+      const letterCountInGuess = rowGuess.filter(ltr => ltr === letter).length;
+      const letterCountInAnswer = answer.split('').filter(ltr => ltr === letter).length;
+      let correctlyPlacedCount = 0;
+      rowGuess.forEach((ltrGuess, index) => {
+        if (ltrGuess === answer[index]) {
+          correctlyPlacedCount++;
+        }
+      })
+      const remainingMisplaced = letterCountInAnswer - correctlyPlacedCount;
+      console.log({letterCountInAnswer, letterCountInGuess, correctlyPlacedCount, remainingMisplaced});
+      return 'misplaced'
+    };
     return 'incorrect';
   }
 
@@ -52,7 +66,7 @@ function Game() {
   return (
     <>
       <Board
-        getLetterClass={getLetterClass}
+        answer={answer}
         rows={guesses}
       />
       <GuessInput
